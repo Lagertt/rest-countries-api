@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import CountryCard from './components/CountryCard/CountryCard.jsx';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -15,6 +16,11 @@ function App() {
 
   return (
     <main className="main">
+      {countries ? (
+        countries.map((country, index) => <CountryCard country={country} index={index} />)
+      ) : (
+        <h1>Стран нет</h1>
+      )}
     </main>
   );
 }
