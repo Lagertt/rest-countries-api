@@ -17,7 +17,9 @@ function App() {
   return (
     <main className="main">
       {countries ? (
-        countries.map((country, index) => <CountryCard country={country} index={index} />)
+        countries.map((country, index) => (
+          <CountryCard country={country} index={index} key={`${index}_${country.name}`} />
+        ))
       ) : (
         <h1>Стран нет</h1>
       )}

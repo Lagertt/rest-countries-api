@@ -1,9 +1,9 @@
 import React from 'react';
 import cl from './CountryCard.module.scss';
 
-function CountryCard({ index, country }) {
+function CountryCard({country }) {
   return (
-    <article className={cl.elem} key={`${index}_${country.name}`}>
+    <article className={cl.elem}>
       <div className={cl.flag}>
         <img src={`${country.flags.png}`} alt="flag"></img>
       </div>
