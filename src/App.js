@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CountryCard from './components/CountryCard/CountryCard.jsx';
+import Header from './components/Header/Header.jsx';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -15,15 +16,20 @@ function App() {
   }, []);
 
   return (
-    <main className="main">
-      {countries ? (
-        countries.map((country, index) => (
-          <CountryCard country={country} index={index} key={`${index}_${country.name}`} />
-        ))
-      ) : (
-        <h1>Стран нет</h1>
-      )}
-    </main>
+    <>
+      <Header title="Where in the world?" />
+      <main className="main">
+        <div className="main__container container">
+          {countries ? (
+            countries.map((country, index) => (
+              <CountryCard country={country} index={index} key={`${index}_${country.name}`} />
+            ))
+          ) : (
+            <h1>Стран нет</h1>
+          )}
+        </div>
+      </main>
+    </>
   );
 }
 
