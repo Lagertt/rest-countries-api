@@ -1,7 +1,7 @@
 import React from 'react';
 import cs from './FilterPopup.module.scss';
 
-function FilterPopup({ items, defaultItem }) {
+function FilterPopup({ items, defaultItem, onChange, value }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(null);
   const filterRef = React.useRef();
@@ -23,6 +23,11 @@ function FilterPopup({ items, defaultItem }) {
   React.useEffect(() => {
     document.body.addEventListener('click', hadleOutsideClick);
   }, []);
+
+  React.useEffect(() => {
+    value = items[activeItem];
+    onChange(value);
+  }, [activeItem]);
 
   return (
     <div ref={filterRef} className={cs.filter}>

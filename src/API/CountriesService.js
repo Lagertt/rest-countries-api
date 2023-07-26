@@ -9,4 +9,17 @@ export default class CountriesService {
       console.log(error);
     }
   }
+
+  static async getByRegion(region) {
+    if (region) {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/region/${region.toLowerCase()}`
+        );
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 }

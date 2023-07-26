@@ -7,10 +7,17 @@ import FilterPopup from './components/FilterPopup/FilterPopup.jsx';
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('');
 
   async function fetchCountries() {
     const countries = await CountriesService.getAll();
     setCountries(countries);
+  }
+
+  async function filterByRegion(region) {
+    setSelectedRegion(region);
+    const countries = await CountriesService.getByRegion(region);
+    countries && setCountries(countries);
   }
 
   useEffect(() => {
@@ -25,8 +32,10 @@ function App() {
           <div className="settings">
             <Search />
             <FilterPopup
-              items={['Africa', 'America', 'Asia', 'Europe', 'Oceania']}
+              items={['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
               defaultItem="Filter by Region"
+              value={selectedRegion}
+              onChange={filterByRegion}
             />
           </div>
 
