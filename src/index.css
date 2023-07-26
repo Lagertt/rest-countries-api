@@ -17,7 +17,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
-  margin-top: 20px;
+  margin-top: 40px;
+  padding-bottom: 40px;
 }
 
 .container {
@@ -30,5 +31,5 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px;
 }
