@@ -22,4 +22,17 @@ export default class CountriesService {
       }
     }
   }
+
+  static async getByName(name) {
+    if (name) {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
+        );
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 }

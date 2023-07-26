@@ -8,6 +8,7 @@ import FilterPopup from './components/FilterPopup/FilterPopup.jsx';
 function App() {
   const [countries, setCountries] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   async function fetchCountries() {
     const countries = await CountriesService.getAll();
@@ -17,6 +18,11 @@ function App() {
   async function filterByRegion(region) {
     setSelectedRegion(region);
     const countries = await CountriesService.getByRegion(region);
+    countries && setCountries(countries);
+  }
+
+  async function filterByName(name) {
+    const countries = await CountriesService.getByName(name);
     countries && setCountries(countries);
   }
 
@@ -30,7 +36,11 @@ function App() {
       <main className="main">
         <div className="container">
           <div className="settings">
-            <Search />
+            <Search
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              onSubmit={() => filterByName(searchValue)}
+            />
             <FilterPopup
               items={['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
               defaultItem="Filter by Region"
