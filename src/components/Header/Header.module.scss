@@ -12,25 +12,5 @@
       font-weight: 800;
       font-size: 32px;
     }
-
-    & .button {
-      display: flex;
-      align-items: center;
-      column-gap: 5px;
-      padding: 10px;
-      background-color: transparent;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-
-      &:hover {
-        border: 1px solid black;
-      }
-
-      &:active {
-        background-color: rgb(225, 225, 225);
-      }
-    }
   }
 }
