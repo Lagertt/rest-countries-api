@@ -22,8 +22,13 @@ function App() {
   }
 
   async function filterByName(name) {
-    const countries = await CountriesService.getByName(name);
-    countries && setCountries(countries);
+    console.log(name);
+    if (name !== '') {
+      const countries = await CountriesService.getByName(name);
+      setCountries(countries);
+    } else {
+      fetchCountries();
+    }
   }
 
   useEffect(() => {
@@ -55,7 +60,7 @@ function App() {
                 <CountryCard country={country} index={index} key={`${index}_${country.name}`} />
               ))
             ) : (
-              <h1>Стран нет</h1>
+              <h1 className="error">По выбранному параметру стран не найдено</h1>
             )}
           </div>
         </div>
