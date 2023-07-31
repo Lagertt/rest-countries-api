@@ -36,4 +36,16 @@ export default class CountriesService {
       }
     }
   }
+
+  static async getByCode(code) {
+    if (code) {
+      try {
+        const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    }
+  }
 }
