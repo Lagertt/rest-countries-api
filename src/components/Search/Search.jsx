@@ -8,7 +8,7 @@ function Search({ searchValue, setSearchValue, onSubmit }) {
 
   const onKeyDown = (e) => {
     if (e.keyCode == 13) {
-      onSubmit(searchValue);
+      onSubmit();
     }
   };
 
