@@ -48,4 +48,18 @@ export default class CountriesService {
       }
     }
   }
+
+  static async getByListCode(codes) {
+    if (codes) {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}`
+        );
+        return response.data;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    }
+  }
 }
