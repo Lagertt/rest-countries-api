@@ -30,77 +30,101 @@ function Detail() {
   return (
     <>
       <Header title="Where in the world?" />
-      <Link to="/">
-        <button>Back to main page</button>
-      </Link>
 
-      <button onClick={() => console.log(country)}>Показать страну</button>
+      {/* <button onClick={() => console.log(country)}>Показать страну</button> */}
 
-      {country && (
-        <div>
-          <div>
-            <img src={`${country.flags.png}`} alt="flag"></img>
-            <h1>{country.name.common}</h1>
-            <ul>
-              <li>
-                <span>Native Name: </span>
-                {Object.entries(country.name.nativeName).map((item, key) => {
-                  return key === Object.entries(country.name.nativeName).length - 1
-                    ? `${item[1].common}`
-                    : `${item[1].common}, `;
-                })}
-              </li>
-              <li>
-                <span>Population: </span>
-                {country.population}
-              </li>
-              <li>
-                <span>Region: </span>
-                {country.region}
-              </li>
-              <li>
-                <span>Sub Region: </span>
-                {country.subregion}
-              </li>
-              {country.capital && (
-                <li>
-                  <span>Capital: </span>
-                  {country.capital[0]}
-                </li>
-              )}
+      <main className="container">
+        <Link to="/">
+          <button className="back-button button">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 8L2 12L6 16" />
+              <path d="M2 12H14" />
+            </svg>
+            Back to main page
+          </button>
+        </Link>
+        {country && (
+          <>
+            <div className="country">
+              <div className="flag">
+                <img src={`${country.flags.png}`} alt="flag"></img>
+              </div>
 
-              <li>
-                <span>Top Level Domain: </span>
-                {country.tld.map((item, index) =>
-                  index === country.tld.length - 1 ? `${item}` : `${item}, `
-                )}
-              </li>
-              <li>
-                <span>Currencies: </span>
-                {Object.values(country.currencies)[0].name}
-              </li>
-              <li>
-                <span>Languages: </span>
-                {Object.entries(country.languages).map((item, key) => {
-                  return key === Object.entries(country.languages).length - 1
-                    ? `${item[1]}`
-                    : `${item[1]}, `;
-                })}
-              </li>
-            </ul>
-          </div>
+              <div className="properties">
+                <h1 className="name">{country.name.common}</h1>
+                <ul className="prop__list">
+                  <li className="prop__item">
+                    <span className="prop__title">Native Name: </span>
+                    {Object.entries(country.name.nativeName).map((item, key) => {
+                      return key === Object.entries(country.name.nativeName).length - 1
+                        ? `${item[1].common}`
+                        : `${item[1].common}, `;
+                    })}
+                  </li>
+                  <li className="prop__item">
+                    <span className="prop__title">Population: </span>
+                    {country.population}
+                  </li>
+                  <li className="prop__item">
+                    <span className="prop__title">Region: </span>
+                    {country.region}
+                  </li>
+                  <li className="prop__item">
+                    <span className="prop__title">Sub Region: </span>
+                    {country.subregion}
+                  </li>
+                  {country.capital && (
+                    <li className="prop__item">
+                      <span className="prop__title">Capital: </span>
+                      {country.capital[0]}
+                    </li>
+                  )}
 
-          <div>
-            Border Countries:
-            {borderCountries &&
-              borderCountries.map((item) => (
-                <Link to={`../${item.cca2}`} key={item.name.common}>
-                  <button>{item.name.common}</button>
-                </Link>
-              ))}
-          </div>
-        </div>
-      )}
+                  <li className="prop__item">
+                    <span className="prop__title">Top Level Domain: </span>
+                    {country.tld.map((item, index) =>
+                      index === country.tld.length - 1 ? `${item}` : `${item}, `
+                    )}
+                  </li>
+                  <li className="prop__item">
+                    <span className="prop__title">Currencies: </span>
+                    {Object.values(country.currencies)[0].name}
+                  </li>
+                  <li className="prop__item">
+                    <span className="prop__title">Languages: </span>
+                    {Object.entries(country.languages).map((item, key) => {
+                      return key === Object.entries(country.languages).length - 1
+                        ? `${item[1]}`
+                        : `${item[1]}, `;
+                    })}
+                  </li>
+                </ul>
+                <div className="borders">
+                  Border Countries:
+                  {borderCountries && (
+                    <ul className="borders__list">
+                      {borderCountries.map((item) => (
+                        <Link to={`../${item.cca2}`} key={item.name.common}>
+                          <button className="button borders__item">{item.name.common}</button>
+                        </Link>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </main>
     </>
   );
 }
