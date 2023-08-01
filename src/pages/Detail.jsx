@@ -10,7 +10,7 @@ function Detail() {
   const href = useHref();
 
   async function fetchCountry() {
-    const country = await CountriesService.getByCode(href.slice(1));
+    const country = await CountriesService.getByCode(href.slice(href.lastIndexOf('/') + 1));
     country && setCountry(country[0]);
   }
 
