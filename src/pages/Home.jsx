@@ -21,8 +21,10 @@ function Home() {
 
   async function filterByRegion(region) {
     setSelectedRegion(region);
+    setIsLoading(true);
     const countries = await CountriesService.getByRegion(region);
     countries && setCountries(countries);
+    setIsLoading(false);
   }
 
   async function filterByName(name) {
