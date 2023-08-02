@@ -4,6 +4,7 @@ import Header from '../components/Header/Header.jsx';
 import { Link, useHref } from 'react-router-dom';
 import { useState } from 'react';
 import SkeletonDetail from './SkeletonDetail.jsx';
+import formatNumb from '../utils/formatNumb.js';
 
 function Detail() {
   const [country, setCountry] = useState(undefined);
@@ -84,7 +85,7 @@ function Detail() {
                   {country.population && (
                     <li className="prop__item">
                       <span className="prop__title">Population: </span>
-                      {country.population}
+                      {formatNumb(country.population)}
                     </li>
                   )}
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import cl from './CountryCard.module.scss';
+import formatNumb from '../../utils/formatNumb';
 
-function CountryCard({country }) {
+function CountryCard({ country }) {
   return (
     <article className={cl.elem}>
       <div className={cl.flag}>
@@ -11,7 +12,7 @@ function CountryCard({country }) {
         <h2>{country.name.common}</h2>
         <ul>
           <li>
-            <span>Population:</span> {country.population}
+            <span>Population:</span> {formatNumb(country.population)}
           </li>
           <li>
             <span>Region:</span> {country.region}
