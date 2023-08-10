@@ -37,6 +37,22 @@ function CountryDetail({ country }) {
             </li>
           )}
 
+          {country.tld && (
+            <li className={cl.prop__item}>
+              <span className={cl.prop__title}>Top Level Domain: </span>
+              {country.tld.map((item, index) =>
+                index === country.tld.length - 1 ? `${item}` : `${item}, `
+              )}
+            </li>
+          )}
+
+          {country.name.official && (
+            <li className={cl.prop__item}>
+              <span className={cl.prop__title}>Official Name: </span>
+              {country.name.official}
+            </li>
+          )}
+
           {country.population && (
             <li className={cl.prop__item}>
               <span className={cl.prop__title}>Population: </span>
@@ -51,33 +67,17 @@ function CountryDetail({ country }) {
             </li>
           )}
 
-          {country.subregion && (
-            <li className={cl.prop__item}>
-              <span className={cl.prop__title}>Sub Region: </span>
-              {country.subregion}
-            </li>
-          )}
-
-          {country.capital && (
-            <li className={cl.prop__item}>
-              <span className={cl.prop__title}>Capital: </span>
-              {country.capital[0]}
-            </li>
-          )}
-
-          {country.tld && (
-            <li className={cl.prop__item}>
-              <span className={cl.prop__title}>Top Level Domain: </span>
-              {country.tld.map((item, index) =>
-                index === country.tld.length - 1 ? `${item}` : `${item}, `
-              )}
-            </li>
-          )}
-
           {country.currencies && (
             <li className={cl.prop__item}>
               <span className={cl.prop__title}>Currencies: </span>
               {Object.values(country.currencies)[0].name}
+            </li>
+          )}
+
+          {country.subregion && (
+            <li className={cl.prop__item}>
+              <span className={cl.prop__title}>Sub Region: </span>
+              {country.subregion}
             </li>
           )}
 
@@ -89,6 +89,13 @@ function CountryDetail({ country }) {
                   ? `${item[1]}`
                   : `${item[1]}, `;
               })}
+            </li>
+          )}
+
+          {country.capital && (
+            <li className={cl.prop__item}>
+              <span className={cl.prop__title}>Capital: </span>
+              {country.capital[0]}
             </li>
           )}
         </ul>
