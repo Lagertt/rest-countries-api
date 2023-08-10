@@ -22,7 +22,11 @@ function Home() {
   async function filterByRegion(region) {
     setSelectedRegion(region);
     setIsLoading(true);
-    const countries = await CountriesService.getByRegion(region);
+
+    const countries =
+      region === 'All'
+        ? await CountriesService.getAll()
+        : await CountriesService.getByRegion(region);
     countries && setCountries(countries);
     setIsLoading(false);
   }
@@ -52,7 +56,7 @@ function Home() {
               onSubmit={() => filterByName(searchValue)}
             />
             <FilterPopup
-              items={['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
+              items={['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
               defaultItem="Filter by Region"
               value={selectedRegion}
               onChange={filterByRegion}
