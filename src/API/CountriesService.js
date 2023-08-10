@@ -31,8 +31,8 @@ export default class CountriesService {
         );
         return response.data;
       } catch (error) {
-        console.log(error);
-        return [];
+        // console.log(error);
+        return null;
       }
     }
   }

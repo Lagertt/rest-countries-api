@@ -66,7 +66,7 @@ function Home() {
           <div className="countries">
             {isLoading ? (
               [...new Array(12)].map((_, index) => <Skeleton key={index} />)
-            ) : countries.length > 0 ? (
+            ) : countries ? (
               countries.map((country, index) => (
                 <Link to={country.cca2} key={`${index}_${country.name.common}`}>
                   <CountryCard country={country} index={index} />
