@@ -7,7 +7,7 @@ function Header({ title }) {
     <header className={cl.header}>
       <div className={`${cl.header__container} container`}>
         <h1 className={cl.title}>{title}</h1>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
     </header>
   );
