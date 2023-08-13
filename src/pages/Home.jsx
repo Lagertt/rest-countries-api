@@ -6,6 +6,7 @@ import CountryCard from '../components/CountryCard/CountryCard.jsx';
 import Header from '../components/Header/Header.jsx';
 import { Link } from 'react-router-dom';
 import Skeleton from '../components/CountryCard/Skeleton.jsx';
+import Pagination from '../components/Pagination/Pagination.jsx';
 
 function Home() {
   const [countries, setCountries] = useState([]);
@@ -13,9 +14,14 @@ function Home() {
   const [searchValue, setSearchValue] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  const countCountriesOnPage = 16;
+  const [currentCountries, setCurrentCountries] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
   async function fetchCountries() {
     const countries = await CountriesService.getAll();
     setCountries(countries);
+    countries && setCurrentCountries(countries.slice(0, countCountriesOnPage));
     setIsLoading(false);
   }
 
@@ -40,9 +46,29 @@ function Home() {
     }
   }
 
+  function changePage() {
+    const fstIndex = currentPage * countCountriesOnPage;
+    const sndIndex = fstIndex + countCountriesOnPage;
+    countries && setCurrentCountries(countries.slice(fstIndex, sndIndex));
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   useEffect(() => {
     fetchCountries();
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(0);
+    changePage();
+  }, [countries]);
+
+  useEffect(() => {
+    changePage();
+  }, [currentPage]);
 
   return (
     <>
@@ -67,7 +93,7 @@ function Home() {
             {isLoading ? (
               [...new Array(12)].map((_, index) => <Skeleton key={index} />)
             ) : countries ? (
-              countries.map((country, index) => (
+              currentCountries.map((country, index) => (
                 <Link to={country.cca2} key={`${index}_${country.name.common}`}>
                   <CountryCard country={country} index={index} />
                 </Link>
@@ -75,6 +101,13 @@ function Home() {
             ) : (
               <h1 className="error">По выбранному параметру стран не найдено</h1>
             )}
+          </div>
+
+          <div className="pagination">
+            <Pagination
+              countPages={Math.round((countries && countries.length) / countCountriesOnPage)}
+              setCurrentPage={(numberPage) => setCurrentPage(numberPage)}
+            />
           </div>
         </div>
       </main>
