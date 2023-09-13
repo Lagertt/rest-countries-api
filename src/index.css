@@ -78,3 +78,34 @@ body {
 .button:active {
   background-color: #d0d0d0;
 }
+
+/* //////////////////////////////////////////////// */
+/* //////////////////////////////////////////////// */
+/* //////////////////////////////////////////////// */
+
+@media (max-width: 1200px) {
+  .countries {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .countries {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .countries {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .settings {
+    flex-direction: column;
+    align-items: start;
+    margin-top: 40px;
+    row-gap: 20px;
+  }
+}
