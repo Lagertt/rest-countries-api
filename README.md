@@ -1,4 +1,4 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# Frontend Mentor - REST Countries API
 
 > This project in currently under development 
 
